@@ -1,0 +1,30 @@
+h1
+{
+    text-align: center;
+}
+
+.rotate-icon
+{
+  transition: transform 5s ease-out;
+  filter:none
+}
+.rotated:hover .rotate-icon
+{
+  transform: rotate(360deg);
+  filter: none
+}
+.bnw
+{
+   filter: grayscale(100%);
+}
+
+.rotate-icon:hover
+ {
+    position:relative;
+    top:-25px;
+    left:-35px;
+    width:350px;
+    height:auto;
+    display:block;
+    z-index:999;
+}
