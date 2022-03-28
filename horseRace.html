@@ -1,0 +1,724 @@
+<template>
+    <lightning-card>
+      <div style="display: flex; justify-content: space-between;">
+        <div style="display: inline-flex;">
+          <lightning-button
+            class="slds-button"
+            label="Races"
+            onclick={navToRaces}
+            style="margin-left: 10px"
+          ></lightning-button>
+          <lightning-button
+            class="slds-button"
+            label="My Lots"
+            onclick={navToLot}
+          ></lightning-button>
+        </div>
+  
+        <div
+          class="slds-m-around_medium slds-text-heading_small"
+          style="text-align: right; display: inline-block;"
+        >
+          <p>{currDate}</p>
+        </div>
+      </div>
+      <!-- <lightning-card> -->
+      <template if:true={races}>
+        <div class="slds-grid slds-gutters slds-align_absolute-center">
+          <div class="slds-col" style="width: 20%">
+            <div class="slds-text-heading_large" style="text-align: center">
+              Race 1
+              <!-- <lightning-button-icon icon-name="utility:delete"></lightning-button-icon> -->
+            </div>
+            <template if:true={dataList1}>
+              <template for:each={dataList1} for:item="horse">
+                <div
+                  class="demo-only slds-align_absolute-center"
+                  style="overflow: hidden"
+                  key={horse.Id}
+                >
+                  <article
+                    class="slds-tile slds-tile_board"
+                    style="
+                      border: 1px solid #e5e5e5;
+                      border-radius: 0.25rem;
+                      background-clip: padding-box;
+                      padding: 0.75rem;
+                      margin: 10px;
+                    "
+                  >
+                    <h3 class="slds-tile__title slds-truncate" title={horse.Name}>
+                      <img
+                        class="customIcon"
+                        src={horse.icon}
+                        alt="Horse Icon"
+                        aria-hidden="true"
+                        style="margin: 5px; width: 20px"
+                        data-id={horse.Id}
+                      />
+                      <a
+                        data1="test1"
+                        data-horseid={horse.Id}
+                        data-race="1"
+                        onclick={selectHorse}
+                        >{horse.Name}</a
+                      >
+                    </h3>
+                    <div class="slds-tile__detail">
+                      <dl class="slds-list_horizontal slds-wrap">
+                        <dt
+                          class="slds-item_label slds-text-color_weak slds-truncate"
+                          title="Second Label"
+                        >
+                          Sex:
+                        </dt>
+                        <dd
+                          class="slds-item_detail slds-truncate"
+                          title="Description for second label"
+                        >
+                          {horse.Sex}
+                        </dd>
+                        <dt
+                          class="slds-item_label slds-text-color_weak slds-truncate"
+                          title="Second Label"
+                        >
+                          Sire:
+                        </dt>
+                        <dd
+                          class="slds-item_detail slds-truncate"
+                          title="Description for second label"
+                        >
+                          {horse.Sire}
+                        </dd>
+                        <dt
+                          class="slds-item_label slds-text-color_weak slds-truncate"
+                          title="Second Label"
+                        >
+                          Trainer:
+                        </dt>
+                        <dd
+                          class="slds-item_detail slds-truncate"
+                          title="Description for second label"
+                        >
+                          {horse.Trainer}
+                        </dd>
+                      </dl>
+                    </div>
+                  </article>
+                  <br />
+                </div>
+              </template>
+            </template>
+          </div>
+  
+          <div class="slds-col" style="width: 20%">
+            <div class="slds-text-heading_large" style="text-align: center">
+              Race 2
+            </div>
+            <template if:true={dataList2}>
+              <template for:each={dataList2} for:item="horse">
+                <div
+                  class="demo-only slds-align_absolute-center"
+                  style="overflow: hidden"
+                  key={horse.Id}
+                >
+                  <article
+                    class="slds-tile slds-tile_board"
+                    style="
+                      border: 1px solid #e5e5e5;
+                      border-radius: 0.25rem;
+                      background-clip: padding-box;
+                      padding: 0.75rem;
+                      margin: 10px;
+                    "
+                  >
+                    <h3 class="slds-tile__title slds-truncate" title={horse.Name}>
+                      <img
+                        class="customIcon"
+                        src={horse.icon}
+                        alt="Horse Icon"
+                        aria-hidden="true"
+                        style="margin: 5px; width: 20px"
+                        data-id={horse.Id}
+                      />
+                      <a
+                        data-horseid={horse.Id}
+                        data-race="2"
+                        onclick={selectHorse}
+                        >{horse.Name}</a
+                      >
+                    </h3>
+                    <div class="slds-tile__detail">
+                      <dl class="slds-list_horizontal slds-wrap">
+                        <dt
+                          class="slds-item_label slds-text-color_weak slds-truncate"
+                          title="Second Label"
+                        >
+                          Sex:
+                        </dt>
+                        <dd
+                          class="slds-item_detail slds-truncate"
+                          title="Description for second label"
+                        >
+                          {horse.Sex}
+                        </dd>
+                        <dt
+                          class="slds-item_label slds-text-color_weak slds-truncate"
+                          title="Second Label"
+                        >
+                          Sire:
+                        </dt>
+                        <dd
+                          class="slds-item_detail slds-truncate"
+                          title="Description for second label"
+                        >
+                          {horse.Sire}
+                        </dd>
+                        <dt
+                          class="slds-item_label slds-text-color_weak slds-truncate"
+                          title="Second Label"
+                        >
+                          Trainer:
+                        </dt>
+                        <dd
+                          class="slds-item_detail slds-truncate"
+                          title="Description for second label"
+                        >
+                          {horse.Trainer}
+                        </dd>
+                      </dl>
+                    </div>
+                  </article>
+                  <br />
+                </div>
+              </template>
+            </template>
+          </div>
+  
+          <div class="slds-col" style="width: 20%">
+            <div class="slds-text-heading_large" style="text-align: center">
+              Race 3
+            </div>
+            <template if:true={dataList3}>
+              <template for:each={dataList3} for:item="horse">
+                <div
+                  class="demo-only slds-align_absolute-center"
+                  style="overflow: hidden"
+                  key={horse.Id}
+                >
+                  <article
+                    class="slds-tile slds-tile_board"
+                    style="
+                      border: 1px solid #e5e5e5;
+                      border-radius: 0.25rem;
+                      background-clip: padding-box;
+                      padding: 0.75rem;
+                      margin: 10px;
+                    "
+                  >
+                    <h3 class="slds-tile__title slds-truncate" title={horse.Name}>
+                      <img
+                        class="customIcon"
+                        src={horse.icon}
+                        alt="Horse Icon"
+                        data-id={horse.Id}
+                        aria-hidden="true"
+                        style="margin: 5px; width: 20px"
+                      />
+                      <a
+                        data-horseid={horse.Id}
+                        data-race="3"
+                        onclick={selectHorse}
+                        >{horse.Name}</a
+                      >
+                    </h3>
+                    <div class="slds-tile__detail">
+                      <dl class="slds-list_horizontal slds-wrap">
+                        <dt
+                          class="slds-item_label slds-text-color_weak slds-truncate"
+                          title="Second Label"
+                        >
+                          Sex:
+                        </dt>
+                        <dd
+                          class="slds-item_detail slds-truncate"
+                          title="Description for second label"
+                        >
+                          {horse.Sex}
+                        </dd>
+                        <dt
+                          class="slds-item_label slds-text-color_weak slds-truncate"
+                          title="Second Label"
+                        >
+                          Sire:
+                        </dt>
+                        <dd
+                          class="slds-item_detail slds-truncate"
+                          title="Description for second label"
+                        >
+                          {horse.Sire}
+                        </dd>
+                        <dt
+                          class="slds-item_label slds-text-color_weak slds-truncate"
+                          title="Second Label"
+                        >
+                          Trainer:
+                        </dt>
+                        <dd
+                          class="slds-item_detail slds-truncate"
+                          title="Description for second label"
+                        >
+                          {horse.Trainer}
+                        </dd>
+                      </dl>
+                    </div>
+                  </article>
+                  <br />
+                </div>
+              </template>
+            </template>
+          </div>
+  
+          <template if:true={weekend}>
+          <div class="slds-col" style="width: 20%">
+            <div class="slds-text-heading_large" style="text-align: center">
+              Race 4
+            </div>
+            <template if:true={dataList4}>
+              <template for:each={dataList4} for:item="horse">
+                <div
+                  class="demo-only slds-align_absolute-center"
+                  style="overflow: hidden"
+                  key={horse.Id}
+                >
+                  <article
+                    class="slds-tile slds-tile_board"
+                    style="
+                      border: 1px solid #e5e5e5;
+                      border-radius: 0.25rem;
+                      background-clip: padding-box;
+                      padding: 0.75rem;
+                      margin: 10px;
+                    "
+                  >
+                    <h3 class="slds-tile__title slds-truncate" title={horse.Name}>
+                      <img
+                        class="customIcon"
+                        src={horse.icon}
+                        alt="Horse Icon"
+                        data-id={horse.Id}
+                        aria-hidden="true"
+                        style="margin: 5px; width: 20px"
+                      />
+                      <a
+                        data-horseid={horse.Id}
+                        data-race="4"
+                        onclick={selectHorse}
+                        >{horse.Name}</a
+                      >
+                    </h3>
+                    <div class="slds-tile__detail">
+                      <dl class="slds-list_horizontal slds-wrap">
+                        <dt
+                          class="slds-item_label slds-text-color_weak slds-truncate"
+                          title="Second Label"
+                        >
+                          Sex:
+                        </dt>
+                        <dd
+                          class="slds-item_detail slds-truncate"
+                          title="Description for second label"
+                        >
+                          {horse.Sex}
+                        </dd>
+                        <dt
+                          class="slds-item_label slds-text-color_weak slds-truncate"
+                          title="Second Label"
+                        >
+                          Sire:
+                        </dt>
+                        <dd
+                          class="slds-item_detail slds-truncate"
+                          title="Description for second label"
+                        >
+                          {horse.Sire}
+                        </dd>
+                        <dt
+                          class="slds-item_label slds-text-color_weak slds-truncate"
+                          title="Second Label"
+                        >
+                          Trainer:
+                        </dt>
+                        <dd
+                          class="slds-item_detail slds-truncate"
+                          title="Description for second label"
+                        >
+                          {horse.Trainer}
+                        </dd>
+                      </dl>
+                    </div>
+                  </article>
+                  <br />
+                </div>
+              </template>
+            </template>
+          </div>
+          </template>
+        </div>
+      </template>
+      <template if:true={myLot}>
+        <!-- <c-test-l-w-c1></c-test-l-w-c1> -->
+        <div class="slds-grid slds-gutters slds-align_absolute-center">
+          <template if:true={selectedH1}>
+            <div class="slds-col" style="width: 20%">
+              <div class="slds-text-heading_large" style="text-align: center">
+                Race 1
+                <!-- <lightning-button-icon icon-name="utility:delete"></lightning-button-icon> -->
+              </div>
+              <!-- <template for:each={dataList1} for:item="horse"> -->
+              <div
+                class="demo-only slds-align_absolute-center"
+                style="overflow: hidden"
+              >
+                <article
+                  class="slds-tile slds-tile_board"
+                  style="
+                    border: 1px solid #e5e5e5;
+                    border-radius: 0.25rem;
+                    background-clip: padding-box;
+                    padding: 0.75rem;
+                    margin: 10px;
+                  "
+                >
+                  <h3
+                    class="slds-tile__title slds-truncate"
+                    title={selectedH1.Name}
+                  >
+                    <img
+                      class="customIcon"
+                      src={selectedH1.icon}
+                      alt="Horse Icon"
+                      aria-hidden="true"
+                      style="margin: 5px; width: 20px"
+                      data-id={selectedH1.Id}
+                    />
+                    <a
+                      data1="test1"
+                      data-horseid={selectedH1.Id}
+                      data-race="1"
+                      >{selectedH1.Name}</a
+                    >
+                  </h3>
+                  <div class="slds-tile__detail">
+                    <dl class="slds-list_horizontal slds-wrap">
+                      <dt
+                        class="slds-item_label slds-text-color_weak slds-truncate"
+                        title="Second Label"
+                      >
+                        Sex:
+                      </dt>
+                      <dd
+                        class="slds-item_detail slds-truncate"
+                        title="Description for second label"
+                      >
+                        {selectedH1.Sex}
+                      </dd>
+                      <dt
+                        class="slds-item_label slds-text-color_weak slds-truncate"
+                        title="Second Label"
+                      >
+                        Sire:
+                      </dt>
+                      <dd
+                        class="slds-item_detail slds-truncate"
+                        title="Description for second label"
+                      >
+                        {selectedH1.Sire}
+                      </dd>
+                      <dt
+                        class="slds-item_label slds-text-color_weak slds-truncate"
+                        title="Second Label"
+                      >
+                        Trainer:
+                      </dt>
+                      <dd
+                        class="slds-item_detail slds-truncate"
+                        title="Description for second label"
+                      >
+                        {selectedH1.Trainer}
+                      </dd>
+                    </dl>
+                  </div>
+                </article>
+                <br />
+              </div>
+              <!-- </template> -->
+            </div>
+          </template>
+  
+          <template if:true={selectedH2}>
+            <div class="slds-col" style="width: 20%">
+              <div class="slds-text-heading_large" style="text-align: center">
+                Race 2
+                <!-- <lightning-button-icon icon-name="utility:delete"></lightning-button-icon> -->
+              </div>
+              <!-- <template for:each={dataList1} for:item="horse"> -->
+              <div
+                class="demo-only slds-align_absolute-center"
+                style="overflow: hidden"
+              >
+                <article
+                  class="slds-tile slds-tile_board"
+                  style="
+                    border: 1px solid #e5e5e5;
+                    border-radius: 0.25rem;
+                    background-clip: padding-box;
+                    padding: 0.75rem;
+                    margin: 10px;
+                  "
+                >
+                  <h3
+                    class="slds-tile__title slds-truncate"
+                    title={selectedH2.Name}
+                  >
+                    <img
+                      class="customIcon"
+                      src={selectedH2.icon}
+                      alt="Horse Icon"
+                      aria-hidden="true"
+                      style="margin: 5px; width: 20px"
+                      data-id={selectedH2.Id}
+                    />
+                    <a
+                      data1="test1"
+                      data-horseid={selectedH2.Id}
+                      data-race="1"
+                      >{selectedH2.Name}</a
+                    >
+                  </h3>
+                  <div class="slds-tile__detail">
+                    <dl class="slds-list_horizontal slds-wrap">
+                      <dt
+                        class="slds-item_label slds-text-color_weak slds-truncate"
+                        title="Second Label"
+                      >
+                        Sex:
+                      </dt>
+                      <dd
+                        class="slds-item_detail slds-truncate"
+                        title="Description for second label"
+                      >
+                        {selectedH2.Sex}
+                      </dd>
+                      <dt
+                        class="slds-item_label slds-text-color_weak slds-truncate"
+                        title="Second Label"
+                      >
+                        Sire:
+                      </dt>
+                      <dd
+                        class="slds-item_detail slds-truncate"
+                        title="Description for second label"
+                      >
+                        {selectedH2.Sire}
+                      </dd>
+                      <dt
+                        class="slds-item_label slds-text-color_weak slds-truncate"
+                        title="Second Label"
+                      >
+                        Trainer:
+                      </dt>
+                      <dd
+                        class="slds-item_detail slds-truncate"
+                        title="Description for second label"
+                      >
+                        {selectedH2.Trainer}
+                      </dd>
+                    </dl>
+                  </div>
+                </article>
+                <br />
+              </div>
+              <!-- </template> -->
+            </div>
+          </template>
+  
+          <template if:true={selectedH3}>
+            <div class="slds-col" style="width: 20%">
+              <div class="slds-text-heading_large" style="text-align: center">
+                Race 3
+                <!-- <lightning-button-icon icon-name="utility:delete"></lightning-button-icon> -->
+              </div>
+              <!-- <template for:each={dataList1} for:item="horse"> -->
+              <div
+                class="demo-only slds-align_absolute-center"
+                style="overflow: hidden"
+              >
+                <article
+                  class="slds-tile slds-tile_board"
+                  style="
+                    border: 1px solid #e5e5e5;
+                    border-radius: 0.25rem;
+                    background-clip: padding-box;
+                    padding: 0.75rem;
+                    margin: 10px;
+                  "
+                >
+                  <h3
+                    class="slds-tile__title slds-truncate"
+                    title={selectedH3.Name}
+                  >
+                    <img
+                      class="customIcon"
+                      src={selectedH3.icon}
+                      alt="Horse Icon"
+                      aria-hidden="true"
+                      style="margin: 5px; width: 20px"
+                      data-id={selectedH3.Id}
+                    />
+                    <a
+                      data1="test1"
+                      data-horseid={selectedH3.Id}
+                      data-race="1"
+                      >{selectedH3.Name}</a
+                    >
+                  </h3>
+                  <div class="slds-tile__detail">
+                    <dl class="slds-list_horizontal slds-wrap">
+                      <dt
+                        class="slds-item_label slds-text-color_weak slds-truncate"
+                        title="Second Label"
+                      >
+                        Sex:
+                      </dt>
+                      <dd
+                        class="slds-item_detail slds-truncate"
+                        title="Description for second label"
+                      >
+                        {selectedH3.Sex}
+                      </dd>
+                      <dt
+                        class="slds-item_label slds-text-color_weak slds-truncate"
+                        title="Second Label"
+                      >
+                        Sire:
+                      </dt>
+                      <dd
+                        class="slds-item_detail slds-truncate"
+                        title="Description for second label"
+                      >
+                        {selectedH3.Sire}
+                      </dd>
+                      <dt
+                        class="slds-item_label slds-text-color_weak slds-truncate"
+                        title="Second Label"
+                      >
+                        Trainer:
+                      </dt>
+                      <dd
+                        class="slds-item_detail slds-truncate"
+                        title="Description for second label"
+                      >
+                        {selectedH3.Trainer}
+                      </dd>
+                    </dl>
+                  </div>
+                </article>
+                <br />
+              </div>
+              <!-- </template> -->
+            </div>
+          </template>
+  
+          <template if:true={weekend}>
+            <template if:true={selectedH4}>
+              <div class="slds-col" style="width: 20%">
+                <div class="slds-text-heading_large" style="text-align: center">
+                  Race 4
+                  <!-- <lightning-button-icon icon-name="utility:delete"></lightning-button-icon> -->
+                </div>
+                <!-- <template for:each={dataList1} for:item="horse"> -->
+                <div
+                  class="demo-only slds-align_absolute-center"
+                  style="overflow: hidden"
+                >
+                  <article
+                    class="slds-tile slds-tile_board"
+                    style="
+                      border: 1px solid #e5e5e5;
+                      border-radius: 0.25rem;
+                      background-clip: padding-box;
+                      padding: 0.75rem;
+                      margin: 10px;
+                    "
+                  >
+                    <h3
+                      class="slds-tile__title slds-truncate"
+                      title={selectedH4.Name}
+                    >
+                      <img
+                        class="customIcon"
+                        src={selectedH4.icon}
+                        alt="Horse Icon"
+                        aria-hidden="true"
+                        style="margin: 5px; width: 20px"
+                        data-id={selectedH4.Id}
+                      />
+                      <a
+                        data1="test1"
+                        data-horseid={selectedH1.Id}
+                        data-race="1"
+                        >{selectedH4.Name}</a
+                      >
+                    </h3>
+                    <div class="slds-tile__detail">
+                      <dl class="slds-list_horizontal slds-wrap">
+                        <dt
+                          class="slds-item_label slds-text-color_weak slds-truncate"
+                          title="Second Label"
+                        >
+                          Sex:
+                        </dt>
+                        <dd
+                          class="slds-item_detail slds-truncate"
+                          title="Description for second label"
+                        >
+                          {selectedH4.Sex}
+                        </dd>
+                        <dt
+                          class="slds-item_label slds-text-color_weak slds-truncate"
+                          title="Second Label"
+                        >
+                          Sire:
+                        </dt>
+                        <dd
+                          class="slds-item_detail slds-truncate"
+                          title="Description for second label"
+                        >
+                          {selectedH4.Sire}
+                        </dd>
+                        <dt
+                          class="slds-item_label slds-text-color_weak slds-truncate"
+                          title="Second Label"
+                        >
+                          Trainer:
+                        </dt>
+                        <dd
+                          class="slds-item_detail slds-truncate"
+                          title="Description for second label"
+                        >
+                          {selectedH4.Trainer}
+                        </dd>
+                      </dl>
+                    </div>
+                  </article>
+                  <br />
+                </div>
+                <!-- </template> -->
+              </div>
+            </template>
+          </template>
+        </div>
+      </template>
+    </lightning-card>
+  </template>
